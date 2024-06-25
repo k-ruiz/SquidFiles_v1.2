@@ -28,9 +28,9 @@ function stks = getStokesletPositions(rho1,geometry_type,geometry,U01)
             Lm = geometry.channel_parameters(2);
             Lb = geometry.channel_parameters(3);
             theta = geometry.channel_parameters(4);
+            Ltot = geometry.channel_parameters(5);
             Ptx = geometry.channel_parameters(6);
             Pty = geometry.channel_parameters(7);
-            Ltot = Lt+cos(theta)*Lm+Lb; % Total height of system simulated.
 
             dsep = geometry.appendage_parameters(1);
             psi = geometry.appendage_parameters(2);
