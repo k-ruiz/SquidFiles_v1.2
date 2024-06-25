@@ -30,24 +30,29 @@ function stks = getStokesletPositions(rho1,geometry_type,geometry,U01)
             theta = geometry.channel_parameters(4);
             Ptx = geometry.channel_parameters(6);
             Pty = geometry.channel_parameters(7);
+            Ltot = Lt+cos(theta)*Lm+Lb; % Total height of system simulated.
 
             dsep = geometry.appendage_parameters(1);
             psi = geometry.appendage_parameters(2);
             PRAx = geometry.appendage_parameters(3);
             PRAy = geometry.appendage_parameters(4);
 
+            top = geometry.capsule_parameters(1);
+            side = geometry.capsule_parameters(2);
+            bott = geometry.capsule_parameters(3);
+
             %% Set the positions of the stokeslets
         
             stks_channel = geometry_poisuelle(rho1,Lt,Lm,Lb,theta,Ptx,Pty); % Set the channel geometry.
         
-            %stks_cap = geometry_capsule(); % Set the channel geometry with a capsule, for future use to include full squid mantle.
+            stks_cap = geometry_capsule(rho1,Pty,Ltot,side,bott,top); % Set the channel geometry with a capsule, for future use to include full squid mantle.
         
             stks_appendages1 = geometry_cylinderPair2(rho1,dsep,psi,PRAx,PRAy,0); % Set the left appendage pair geometry.
         
             stks_appendages2 = geometry_cylinderPair2(rho1,dsep,pi-psi,-PRAx,PRAy,1); % Set the left appendage pair geometry.
         
-            stks = [stks_channel;stks_appendages1;stks_appendages2]; % Combine all structures.
-            %stks = [stks_channel;stls_cap; stks_appendages1; stks_appendages2]; % Combine all structures.
+            %stks = [stks_channel;stks_appendages1;stks_appendages2]; % Combine all structures.
+            stks = [stks_channel;stks_cap;stks_appendages1;stks_appendages2]; % Combine all structures. Includes the capsule
         
             %% Set the corresponding boundary velocities
         
