@@ -24,6 +24,9 @@ system.appendage_parameters(1) = 2; % Appendage separation.
 system.appendage_parameters(2) = 0; % Placeholder
 system.appendage_parameters(3) = 5; % Placeholder, defines solver grid
 
+% Capsule geometry
+system.capsule_parameteres = [];
+
 case 2 % Confining funnel
 
 % Channel geometry
@@ -33,13 +36,18 @@ system.channel_parameters(3) = 10; % Length of bottom segment.
 system.channel_parameters(4) = pi/4; % Angle of right transition region to horizontal.
 system.channel_parameters(5) = system.channel_parameters(1)+sin(pi/4)*system.channel_parameters(2)+system.channel_parameters(3); % Total height of system simulated.
 system.channel_parameters(6) = 10; % Position of top point of right boundary.
-system.channel_parameters(7) = system.channel_parameters(1)+system.channel_parameters(2)/2; % Position of top point of right boundary.
+system.channel_parameters(7) = system.channel_parameters(1)+system.channel_parameters(2)*cos(system.channel_parameters(4)); % Position of top point of right boundary.
 
 % Appendage geometry
 system.appendage_parameters(1) = 1; % Appendage separation.
 system.appendage_parameters(2) = 0; % Angle of inclination between appendage pairs (Rad).
 system.appendage_parameters(3) = 5; % Position of right appendage in x.
 system.appendage_parameters(4) = 5; % Position of right appendage in y.
+
+% Capsule geometry
+system.capsule_parameters(1) = system.channel_parameters(1) + 4; % Radius of the posterier 
+system.capsule_parameters(2) = system.channel_parameters(7); % Lengths of the side walls
+system.capsule_parameters(3) = system.channel_parameters(6) - system.channel_parameters(2)*cos(system.channel_parameters(4)); % Length of the inlet
 
 end
 
