@@ -20,7 +20,7 @@ function [caps_stks] = geometry_capsule(rho2,Pty2,Ltot2,side2,bott2,top2)
 
     wallE = wallD;
     wallE(:,1) = -wallE(:,1); % reflect across the x axis
-    wallE = wallE(2:end-1,:); 
+    %wallE = wallE(2:end-1,:); 
 
     % construction of the side boundaries 
     wallA = [top2*ones(floor(2*side2*rho2),1)';linspace(Pty2-Ltot2,side2,floor(2*side2*rho2));zeros(floor(2*side2*rho2),1)']';
@@ -29,8 +29,8 @@ function [caps_stks] = geometry_capsule(rho2,Pty2,Ltot2,side2,bott2,top2)
     wallC(:,1) = -wallC(:,1); % reflect accorss the x axis
     
     % combining all the arrays
-    %caps_stks = [wallA;wallB;wallC;wallD;wallE]; % combines all the boundaries
-    caps_stks = [wallB;wallC;wallE]; 
+    caps_stks = [wallB]; % combines all the boundaries
 
 end
 % i have a question... for god... why?
+% this code has set me on an emotional journey of edurance

@@ -52,7 +52,7 @@ system.capsule_parameters(3) = system.channel_parameters(6)-system.channel_param
 end
 
 % Flow parameters
-U0 = 1; % Background flow strength Max.
+U0 = -1; % Background flow strength Max.
 
 % Underlying space parameters.
 nptx = 100; % Solver points in x direction.
