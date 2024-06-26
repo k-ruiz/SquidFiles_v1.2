@@ -6,7 +6,7 @@
 parallel = true;
 
 rho = 10.0;
-eps = 0.1/rho; % Regularisaton parameter.
+eps = 0.5/rho; % Regularisaton parameter.
 
 % Geometry type
 geometry_type = 2;
@@ -57,7 +57,7 @@ U0 = 1; % Background flow strength Max.
 % Underlying space parameters.
 nptx = 100; % Solver points in x direction.
 npty = nptx; % Solver points in y direction.
-Ptx = system.channel_parameters(5);
+Ptx = system.channel_parameters(6);
 Pty = system.channel_parameters(7);
-x = linspace(-Ptx,Ptx,nptx); % Solver x coords.
-y = linspace(Pty-Ltot-10,system.capsule_parameters(2)+system.capsule_parameters(1)+5,npty); % Solver y coords.
+x = linspace(-Ptx-15,Ptx+15,nptx); % Solver x coords.
+y = linspace(Pty-system.channel_parameters(5)-5,system.capsule_parameters(2)+system.capsule_parameters(1)+5,npty); % Solver y coords.
