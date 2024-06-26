@@ -37,4 +37,3 @@ function [channel_stks] = geometry_poisuelle(rho2,Lt2,Lm2,Lb2,theta2,Ptx2,Pty2)
     %channel_stks = [wallL;wallR;wallT;wallB];
 
 end
-

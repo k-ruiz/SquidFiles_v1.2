@@ -9,13 +9,13 @@
 function [caps_stks] = geometry_capsule(rho2,Pty2,Ltot2,side2,bott2,top2)
 
     % construction of the top boundary
-    alpha = linspace(-pi/2,pi/2,top2*floor(rho2*pi)); % gets the angles to parameterise the surface
+    phi = linspace(-pi/2,pi/2,top2*floor(rho2*pi)); % gets the angles to parameterise the surface of the top boundary
 
-    wallB = [sin(alpha);cos(alpha);zeros(top2*floor(rho2*pi),1)']'; % gets the coordinates of the half-circle
+    wallB = [sin(phi);cos(phi);zeros(top2*floor(rho2*pi),1)']'; % gets the coordinates of the half-circle
     wallB = top2*wallB + [0,side2,0]; % shifts the half-circle to the top of the squid
 
     % construction of the bottom boundaries
-    wallD = [linspace(bott2,top2,floor(2*bott2*rho2)); (Pty2-Ltot2)*ones(floor(2*bott2*rho2),1)'; 2*ones(floor(2*bott2*rho2),1)']';
+    wallD = [linspace(bott2,top2,floor(2*bott2*rho2));(Pty2-Ltot2)*ones(floor(2*bott2*rho2),1)';2*ones(floor(2*bott2*rho2),1)']';
     wallD = wallD(2:end-1,:); % idk what this does and at this point im too afraid to ask
 
     wallE = wallD;
@@ -23,13 +23,14 @@ function [caps_stks] = geometry_capsule(rho2,Pty2,Ltot2,side2,bott2,top2)
     wallE = wallE(2:end-1,:); 
 
     % construction of the side boundaries 
-    wallA = [top2*ones(floor(2*side2*rho2),1)'; linspace(Pty2-Ltot2,side2,floor(2*side2*rho2)); zeros(floor(2*side2*rho2),1)']';
+    wallA = [top2*ones(floor(2*side2*rho2),1)';linspace(Pty2-Ltot2,side2,floor(2*side2*rho2));zeros(floor(2*side2*rho2),1)']';
     
     wallC = wallA;
     wallC(:,1) = -wallC(:,1); % reflect accorss the x axis
     
     % combining all the arrays
-    caps_stks = [wallA;wallB;wallC;wallD;wallE]; % combines all the boundaries
+    %caps_stks = [wallA;wallB;wallC;wallD;wallE]; % combines all the boundaries
+    caps_stks = [wallB;wallC;wallE]; 
 
 end
 % i have a question... for god... why?
