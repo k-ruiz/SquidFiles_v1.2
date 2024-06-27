@@ -15,7 +15,7 @@ function [caps_stks] = geometry_capsule(rho2,Pty2,Ltot2,side2,bott2,top2)
     wallB = top2*wallB + [0,side2,0]; % shifts the half-circle to the top of the squid
 
     % construction of the bottom boundaries
-    wallD = [linspace(bott2,top2,floor(2*bott2*rho2));(Pty2-Ltot2)*ones(floor(2*bott2*rho2),1)';2*ones(floor(2*bott2*rho2),1)']';
+    wallD = [linspace(bott2,top2,floor(2*bott2*rho2));(Pty2-Ltot2)*ones(floor(2*bott2*rho2),1)';zeros(floor(2*bott2*rho2),1)']';
     wallD = wallD(2:end-1,:); % idk what this does and at this point im too afraid to ask
 
     wallE = wallD;
@@ -24,13 +24,18 @@ function [caps_stks] = geometry_capsule(rho2,Pty2,Ltot2,side2,bott2,top2)
 
     % construction of the side boundaries 
     wallA = [top2*ones(floor(2*side2*rho2),1)';linspace(Pty2-Ltot2,side2,floor(2*side2*rho2));zeros(floor(2*side2*rho2),1)']';
-    
+
     wallC = wallA;
     wallC(:,1) = -wallC(:,1); % reflect accorss the x axis
-    
+
     % combining all the arrays
-    caps_stks = [wallB]; % combines all the boundaries
+    caps_stks = [wallA;wallB;wallC;wallD;wallE]; % combines all the boundaries
 
 end
 % i have a question... for god... why?
+
 % this code has set me on an emotional journey of edurance
+
+% everyday I question why this things doesn't work. then i realize that i am
+% the problem
+
